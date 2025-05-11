@@ -1,12 +1,69 @@
 # Welcome to your Expo app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is# ShardCalendar - Application de Partage de Calendrier
 
-## Get started
+Application mobile multiplateforme (iOS + Android) développée avec React Native et TypeScript, suivant les principes de la Clean Architecture. Cette application permet le partage de calendrier entre deux personnes avec synchronisation en temps réel via Firebase.
 
-1. Install dependencies
+## Fonctionnalités
 
-   ```bash
+- Authentification (Google, Apple, Email/Password)
+- Ajout, modification et suppression d'événements
+- Affichage des événements dans une vue calendrier
+- Synchronisation en temps réel via Firebase (Firestore)
+- Notifications push pour les rappels d'événements (optionnel)
+
+## Architecture
+
+L'application est structurée selon les principes de la Clean Architecture avec 4 couches distinctes :
+
+### 1. Domain Layer
+
+Contient les entités métier et les interfaces des repositories :
+
+- Entités : `User`, `Event`
+- Interfaces : `IUserRepository`, `IEventRepository`, `IAuthRepository`, `INotificationRepository`
+
+### 2. Use Case Layer
+
+Contient la logique métier de l'application :
+
+- Événements : `CreateEventUseCase`, `GetEventsByDateRangeUseCase`, `UpdateEventUseCase`, `DeleteEventUseCase`
+- Authentification : `SignInUseCase`, `SignUpUseCase`, `SignOutUseCase`
+- Notifications : `ScheduleEventNotificationUseCase`
+
+### 3. Data Layer
+
+Contient les implémentations concrètes des repositories :
+
+- Sources de données : `FirebaseAuthDataSource`, `FirebaseEventDataSource`, `ExpoNotificationDataSource`
+- Repositories : `FirebaseUserRepository`, `FirebaseEventRepository`, `FirebaseAuthRepository`, `ExpoNotificationRepository`
+
+### 4. Interface Layer
+
+Contient les composants UI et la logique de présentation :
+
+- Composants : `Button`, `TextField`, `EventItem`, `EventForm`
+- Écrans : `LoginScreen`, `RegisterScreen`, `CalendarScreen`, `EventDetailsScreen`, `CreateEventScreen`, `EditEventScreen`
+- Navigation basée sur Expo Router
+
+## Technologies utilisées
+
+- React Native avec TypeScript
+- Expo
+- Firebase (Firestore, Authentication)
+- react-native-calendars
+- Expo Notifications
+
+## Installation
+
+1. Cloner le dépôt :
+   ```
+   git clone <url-du-repo>
+   cd ShardCalendarExpo
+   ```
+
+2. Installer les dépendances :
+   ```
    npm install
    ```
 
